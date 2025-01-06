@@ -4,13 +4,13 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = {noremap=true, silent=true, buffer=bufnr}
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', ']e', function() vim.diagnostic.jump({count=1}) end)
-  vim.keymap.set('n', '[e', function() vim.diagnostic.jump({count=-1}) end)
+  vim.keymap.set('n', ']e', function() vim.diagnostic.jump({ count = 1 }) end)
+  vim.keymap.set('n', '[e', function() vim.diagnostic.jump({ count = -1 }) end)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
@@ -23,33 +23,33 @@ local on_attach = function(client, bufnr)
 end
 
 return {
-    'neovim/nvim-lspconfig',
-     dependencies = {'saghen/blink.cmp'},
-     config = function()
-       local lspconfig = require("lspconfig")
-       local capabilities = require("blink.cmp").get_lsp_capabilities()
-       -- LUA LS setup
-       lspconfig.lua_ls.setup({
-          Lua = {
-            completion = {
-              callSnippet = "Replace",
-             }
-          },
-          settings = {
-              diagnostics = {
-                  -- Get the language server to recognize the `vim` global
-               globals = { "vim", "use" },
-              },
-          },
-          on_attach = on_attach,
-          capabilities = capabilities,
-       })
-       -- BASH LS setup
-       lspconfig.bashls.setup ({
-       capabilities = capabilities,
-       cmd = {"/home/jglotzer/.local/share/nvim/mason/bin/bash-language-server", "start"},
-       snippetSupport = true,
-       on_attach = on_attach,
-      })
-     end
+  'neovim/nvim-lspconfig',
+  dependencies = { 'saghen/blink.cmp' },
+  config = function()
+    local lspconfig = require("lspconfig")
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
+    -- LUA LS setup
+    lspconfig.lua_ls.setup({
+      Lua = {
+        completion = {
+          callSnippet = "Replace",
+        }
+      },
+      settings = {
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = { "vim", "use" },
+        },
+      },
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+    -- BASH LS setup
+    lspconfig.bashls.setup({
+      capabilities = capabilities,
+      cmd = { "/home/jglotzer/.local/share/nvim/mason/bin/bash-language-server", "start" },
+      snippetSupport = true,
+      on_attach = on_attach,
+    })
+  end
 }

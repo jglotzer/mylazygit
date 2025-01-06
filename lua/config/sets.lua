@@ -26,10 +26,11 @@ vim.opt.termguicolors = true
 -- For some reason or other vim.opt.backup = false not having desired effect.
 -- Probably not it - it was the undodir that as not being explanded.
 vim.cmd([[
-  colorscheme koehler
+  "colorscheme koehler
   set t_Co=256
   set nobackup
   ]])
+vim.cmd.colorscheme "catppuccin"
 vim.opt.background = "dark"
 vim.opt.compatible = false
 vim.opt.foldmethod = "marker"
@@ -38,7 +39,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.swapfile = false
 vim.opt.hlsearch = false
-vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.ruler = true
 vim.opt.ignorecase = true
 vim.opt.incsearch = true

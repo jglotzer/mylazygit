@@ -1,4 +1,3 @@
-
 vim.cmd [[
   call yankstack#setup()
   nmap Y y$
@@ -17,7 +16,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-  -- augroup highlight_yank
-  --   autocmd!
-  --   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 100})
-  -- augroup END
+-- augroup highlight_yank
+--   autocmd!
+--   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 100})
+-- augroup END

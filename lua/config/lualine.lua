@@ -1,11 +1,11 @@
-require'lualine'.setup {
+require 'lualine'.setup {
   options = {
     icons_enabled = true,
     --theme = 'dracula',
     --theme = 'solarized_light',
     theme = 'papercolor_light',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -20,18 +20,18 @@ require'lualine'.setup {
     }
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', {'diagnostics', symbols = { error = ' ', warn = ' ', info = ' ', hint = ' '}}},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch', 'diff', { 'diagnostics', symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' } } },
+    lualine_c = { 'filename' },
+    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+    lualine_y = { 'progress' },
+    lualine_z = { 'location' }
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = { 'filename' },
+    lualine_x = { 'location' },
     lualine_y = {},
     lualine_z = {}
   },
@@ -40,5 +40,4 @@ require'lualine'.setup {
   inactive_winbar = {},
   extensions = {}
 }
-require("bufferline").setup{}
-
+require("bufferline").setup {}
