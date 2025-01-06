@@ -5,6 +5,11 @@ return {
        local lspconfig = require("lspconfig")
        local capabilities = require("blink.cmp").get_lsp_capabilities()
        lspconfig.lua_ls.setup({
+          Lua = {
+            completion = {
+              callSnippet = "Replace",
+             }
+          },
           settings = {
               diagnostics = {
                   -- Get the language server to recognize the `vim` global
