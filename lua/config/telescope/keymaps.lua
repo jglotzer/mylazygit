@@ -3,13 +3,12 @@ local tbi = require('telescope.builtin')
 
 vim.keymap.set("n", "<leader>ta", tbi.grep_string, { desc = "search current word" })
 vim.keymap.set("n", "<leader>tg", tbi.live_grep, { desc = "live grep" })
+vim.keymap.set("n", "<leader>tlg", tbi.live_grep, { desc = "live grep" })
 vim.keymap.set("n", "<leader>tf", tbi.find_files, { desc = "find files" })
---" Or :Telescope grep_string search=ur_mom
 vim.keymap.set("n", "<leader>tb", tbi.buffers, { desc = "view buffers" })
 vim.keymap.set("n", "<leader>th", tbi.help_tags, { desc = "view help tags" })
 vim.keymap.set("n", "<leader>tc", tbi.commands, { desc = "view all commands" })
 vim.keymap.set("n", "<leader>tk", tbi.keymaps, { desc = "view all keymaps" })
--- " Telescope builtin - tt - telescope telescope
 vim.keymap.set("n", "<leader>twd", tbi.diagnostics, { desc = "entire workspace diagnostics" })
 vim.keymap.set("n", "<leader>tt", tbi.builtin, { desc = "telescope builtin" })
 
