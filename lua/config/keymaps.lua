@@ -8,4 +8,7 @@ vim.keymap.set("n", "<F11>", "<Cmd>set nu! rnu! <CR>", { desc = "Toggle line num
 
 -- In visual mode move selected blocks up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {})
-vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv", {})
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {})
+
+-- Terminal mode escape.
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
