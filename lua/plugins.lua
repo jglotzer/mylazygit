@@ -18,4 +18,5 @@ return {
   'akinsho/bufferline.nvim',
   'maxbrunsfeld/vim-yankstack',
   {"folke/neoconf.nvim", cmd = "Neoconf"},
+  {'mhinz/vim-signify'},
 }
