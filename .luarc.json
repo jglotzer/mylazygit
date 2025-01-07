@@ -1,7 +1,7 @@
 {
-    "workspace.checkThirdParty": false,
-    "diagnostics.globals": [
-        "vim", "use"
-    ],
-    "completion.callSnippet" : "Replace"
+  "workspace.checkThirdParty": false,
+  "diagnostics.globals": [
+      "vim", "use"
+  ],
+  "completion.callSnippet" : "Replace"
 }

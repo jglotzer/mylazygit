@@ -15,7 +15,7 @@ vim.opt.cmdheight = 1
 vim.opt.updatetime = 50
 vim.opt.shortmess:append({ c = true })
 vim.opt.signcolumn = "auto"
--- This was giving me fits this file can't expand the tilde!
+-- Careful, this file can't expand the tilde!
 vim.opt.undodir = "/home/jglotzer/.nvim/undodir"
 vim.opt.undofile = true
 vim.opt.backup = false
@@ -23,13 +23,10 @@ vim.opt.wrap = false
 vim.opt.errorbells = false
 vim.opt.guicursor = ""
 vim.opt.termguicolors = true
--- For some reason or other vim.opt.backup = false not having desired effect.
--- Probably not it - it was the undodir that as not being explanded.
 vim.cmd([[
-  "colorscheme koehler
   set t_Co=256
-  set nobackup
   ]])
+-- vim.cmd.colorscheme "koehler"
 vim.cmd.colorscheme "catppuccin"
 vim.opt.background = "dark"
 vim.opt.compatible = false
@@ -48,7 +45,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.autoindent = true
-vim.opt.smartindent = false
+vim.opt.smartindent = true
 vim.opt.scrolloff = 7
 vim.opt.hidden = true
 vim.opt.tags = "tags;"
