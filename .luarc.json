@@ -2,6 +2,6 @@
     "workspace.checkThirdParty": false,
     "diagnostics.globals": [
         "vim", "use"
-    ]
+    ],
     "completion.callSnippet" : "Replace"
 }

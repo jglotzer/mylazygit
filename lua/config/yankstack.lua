@@ -9,14 +9,9 @@ vim.cmd [[
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('highlight_yank', {}),
-  desc = 'Hightlight selection on yank',
+  desc = 'Highlight selection on yank',
   pattern = '*',
   callback = function()
     vim.highlight.on_yank { higroup = 'IncSearch', timeout = 100 }
   end,
 })
-
--- augroup highlight_yank
---   autocmd!
---   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 100})
--- augroup END
