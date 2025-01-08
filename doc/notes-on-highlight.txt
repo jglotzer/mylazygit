@@ -1,0 +1,35 @@
+
+-- https://github.com/neovim/neovim/issues/21816
+-- https://www.reddit.com/r/neovim/comments/16qls9t/what_value_do_you_set_for_listchars/
+--vim.hl.create("Pmenu", {ctermbg="darkblue", guibg="darkblue"}, false)
+
+-- highlight Pmenu ctermbg=darkblue guibg=darkblue
+-- highlight ExtraWhitespace ctermbg=red guibg=red
+-- match ExtraWhitespace /\s\+$/
+--  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+--  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+--  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+--  autocmd BufWinLeave * call clearmatches()
+--  " Don't want red highlights in terminal mode.
+--  " The first of these almost solved the issue but the second completely did.
+--  autocmd TermOpen * call clearmatches()
+--  autocmd BufWinEnter bash call clearmatches()
+
+-- https://github.com/neovim/neovim/issues/21816
+-- vim.g.show_whitespace = 1
+-- if vim.g.show_whitespace then
+--   local ag = vim.api.nvim_create_augroup('show_whitespace', { clear = true })
+--   vim.api.nvim_create_autocmd({"BufWinEnter", "InsertLeave"}, {
+--     pattern = '*',
+--     command = [[syntax match Tab /\v\t/ containedin=ALL | syntax match TrailingWS /\v\s\ze\s*$/ containedin=ALL]],
+--     group = ag,
+--   })
+--   vim.api.nvim_create_autocmd({"TermOpen"}, {
+--     pattern = 'bash',
+--     command = "echo 'Entering Terminal'",
+--     group = ag,
+--   })
+--   vim.cmd [[highlight Tab ctermbg=240 ctermfg=240 guibg=Grey50 guifg=Grey50]]
+--   vim.cmd [[highlight TrailingWS ctermbg=203 ctermfg=203 guibg=IndianRed1 guifg=IndianRed1]]
+--   vim.cmd [[highlight Termopen set colorscheme koehler]]
+-- end
