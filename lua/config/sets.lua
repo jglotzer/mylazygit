@@ -27,7 +27,7 @@ vim.cmd([[
   set t_Co=256
   ]])
 -- vim.cmd.colorscheme "koehler"
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "catppuccin-macchiato"
 vim.opt.background = "dark"
 vim.opt.compatible = false
 vim.opt.foldmethod = "marker"
