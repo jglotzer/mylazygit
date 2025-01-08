@@ -19,5 +19,6 @@ return {
   'maxbrunsfeld/vim-yankstack',
   {"folke/neoconf.nvim", cmd = "Neoconf"},
   'mhinz/vim-signify',
-  'farmergreg/vim-lastplace'
+  'farmergreg/vim-lastplace',
+  -- 'ntpeters/vim-better-whitespace',
 }
