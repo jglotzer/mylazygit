@@ -59,3 +59,4 @@ vim.opt.splitbelow = true
 vim.opt.foldlevel = 999
 vim.opt.textwidth = 100
 vim.opt.clipboard = "unnamedplus"
+vim.opt.list = true
