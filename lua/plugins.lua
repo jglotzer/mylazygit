@@ -1,10 +1,10 @@
 return {
   "folke/neodev.nvim",
-  {"catppuccin/nvim", name = "catppuccin", priority = 1000},
+  --{"catppuccin/nvim", name = "catppuccin", priority = 1000},
   "nvim-telescope/telescope.nvim",
   --"saghen/blink.cmp",
   "mbbill/undotree",
-  "ellisonleao/gruvbox.nvim",
+  --"ellisonleao/gruvbox.nvim",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig",
