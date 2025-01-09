@@ -19,6 +19,7 @@ vim.keymap.set("n", "<leader>O", "O<esc>",
   { desc = "Empty newline above, stay in normal mode", noremap = true, silent = true })
 
 -- TJ - SpaceX SpaceSpaceX source code
+-- https://youtu.be/CuWfgiwI73Q?si=8cf6G1lIBBImS7G-&t=1456
 vim.keymap.set("n", "<space><space>x", "<cmd>.lua<CR>", { desc = "Source the current line", noremap = true })
 vim.keymap.set("n", "<space>x", "<cmd>source %<CR>", { desc = "Source the current file", noremap = true })
 --print("Thanks TJ!")
