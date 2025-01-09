@@ -1,5 +1,6 @@
 require("config.lazy")
 require("config.sets")
+require("config.lsp")
 -- Seems like some things have to be done as config and not as plugins.
 require("config.lualine")
 require("config.yankstack")

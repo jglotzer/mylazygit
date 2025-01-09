@@ -53,7 +53,8 @@ vim.opt.tagstack = true
 vim.opt.showcmd = true
 vim.opt.laststatus = 2
 vim.opt.timeoutlen = 1000
-vim.opt.wildmenu = true
+-- Don't want competing menus
+vim.opt.wildmenu = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.foldlevel = 999
