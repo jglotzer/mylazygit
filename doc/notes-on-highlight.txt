@@ -16,7 +16,7 @@
 --  autocmd BufWinEnter bash call clearmatches()
 
 -- https://github.com/neovim/neovim/issues/21816
--- vim.g.show_whitespace = 1
+-- vim.g.show_whitespace = 1:
 -- if vim.g.show_whitespace then
 --   local ag = vim.api.nvim_create_augroup('show_whitespace', { clear = true })
 --   vim.api.nvim_create_autocmd({"BufWinEnter", "InsertLeave"}, {

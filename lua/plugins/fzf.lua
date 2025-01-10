@@ -10,6 +10,8 @@ return {
   -- grep, etc, for a more "complete" resume press alt-esc to hide the fzf process instead, this
   -- will keep the fzf process running in the background and thus will restore the process entirely
   -- including cursor position and selection. To configure hiding by default:
+  -- Actually the real difficulty was a naming conflict on <leader>F which happened on LSP attach.
+  -- Now that that conflict has been fixed there is no issue.
   config = require('fzf-lua').setup(
     { 'fzf-native' },
     { keymap = { builtin = { true, ["<Esc>"] = "hide" } } })

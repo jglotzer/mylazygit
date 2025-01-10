@@ -24,4 +24,5 @@ end, { desc = "Telescope Find Files Custom Command No Ignore", noremap = true, s
 vim.keymap.set("n", "<leader>tif", function()
   tbi.find_files { find_command = { "fd", "-H", "-I", "-L", "-E", ".git" } }
 end, { desc = "Telescope Find Files Custom Command Do Ignore", noremap = true, silent = true })
---" Once you find something <c-x> for open in a horizontal split, <c-v> to open in a vertical split.
+-- Once you find something <c-x> for open in a horizontal split, <c-v> to open in a vertical split.
+-- And <c-q> opens in quickfix window.

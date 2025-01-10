@@ -1,8 +1,7 @@
 -- Can always run :4verbose set tw or just :set tw
 -- to see what value is being set to
 -- Can also type :set or set!
--- also :so %
--- sources current file.
+-- also :so % sources current file.
 -- https://neovim.io/doc/user/options.html
 -- start neovim with -V1 and then
 -- :verbose set tw
@@ -15,7 +14,6 @@ vim.opt.cmdheight = 1
 vim.opt.updatetime = 50
 vim.opt.shortmess:append({ c = true })
 vim.opt.signcolumn = "auto"
--- Careful, this file can't expand the tilde!
 vim.opt.undodir = "/home/jglotzer/.nvim/undodir"
 vim.opt.undofile = true
 vim.opt.backup = false
