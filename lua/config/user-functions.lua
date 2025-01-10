@@ -15,3 +15,16 @@ vim.api.nvim_create_user_command(
   end,
   { bang = true, desc = "Begone Empty Lines" }
 )
+
+-- Kind of weak to use vimscript but anyway ...
+-- diffoff to get out
+vim.cmd [[
+function! s:DiffWithSaved()
+  let myfiletype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . myfiletype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
+]]
