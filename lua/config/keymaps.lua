@@ -20,14 +20,19 @@ vim.keymap.set("n", "<leader>O", "O<esc>",
 
 -- TJ - SpaceX SpaceSpaceX source code
 -- https://youtu.be/CuWfgiwI73Q?si=8cf6G1lIBBImS7G-&t=1456
-vim.keymap.set("n", "<space><space>x", "<cmd>.lua<CR>", { desc = "Source the current line", noremap = true })
-vim.keymap.set("n", "<space>x", "<cmd>source %<CR>", { desc = "Source the current file", noremap = true })
+vim.keymap.set("n", "<space><space>x", "<cmd>.lua<CR>",
+  { desc = "Source the current line", noremap = true, silent = true })
+vim.keymap.set("n", "<space>x", "<cmd>source %<CR>",
+  { desc = "Source the current file", noremap = true, silent = true })
 --print("Thanks TJ!")
 --These mappings control the size of the splits
-vim.keymap.set("n", "<M-Left>", "<c-w>5>", { desc = "Alt left arrow to move split left", noremap = true })
-vim.keymap.set("n", "<M-Right>", "<c-w>5<", { desc = "Alt right arrow to move split right", noremap = true })
-vim.keymap.set("n", "<M-Up>", "<c-W>5+>", { desc = "Alt up arrow to move split up", noremap = true })
-vim.keymap.set("n", "<M-Down>", "<c-W>5-<", { desc = "Alt down arrow to move split down", noremap = true })
+vim.keymap.set("n", "<M-Left>", "<c-w>5>", { desc = "Alt left arrow to move split left", noremap = true, silent = true })
+vim.keymap.set("n", "<M-Right>", "<c-w>5<",
+  { desc = "Alt right arrow to move split right", noremap = true, silent = true })
+vim.keymap.set("n", "<M-Up>", "<c-W>5+>", { desc = "Alt up arrow to move split up", noremap = true, silent = true })
+vim.keymap.set("n", "<M-Down>", "<c-W>5-<", { desc = "Alt down arrow to move split down", noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader><CR>", "<cmd>source /home/jglotzer/.lazy/nvim/init.lua <CR>",
-  { desc = "Source init.lua (shoutout)", noremap = true })
+  { desc = "Source init.lua (shoutout)", noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "vim.lsp.buf.rename", noremap = true, silent = true })
