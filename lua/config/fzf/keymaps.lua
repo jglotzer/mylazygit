@@ -1,5 +1,6 @@
 -- https://github.com/benfrain/neovim/blob/ea13388ddf71e7107be3bec8c1cdcc60ceff7223/lua/mappings.lua
 vim.keymap.set("n", "<leader>F", require("fzf-lua").files, { desc = "FZF Files" })
+vim.keymap.set("n", "<leader>ff", require("fzf-lua").files, { desc = "FZF Files" })
 vim.keymap.set("n", "<leader><leader>", require("fzf-lua").resume, { desc = "FZF Resume" })
 -- vim.keymap.set("n", "<leader>zr", require("fzf-lua").registers, { desc = "Registers" })
 -- vim.keymap.set("n", "<leader>zm", require("fzf-lua").marks, { desc = "Marks" })
