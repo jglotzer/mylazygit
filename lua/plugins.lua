@@ -32,5 +32,6 @@ return {
   'saadparwaiz1/cmp_luasnip',
   'simrat39/rust-tools.nvim',
   "ibhagwan/fzf-lua",
+  "junegunn/gv.vim",
   -- 'ntpeters/vim-better-whitespace',
 }
