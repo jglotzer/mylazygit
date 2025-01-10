@@ -4,7 +4,6 @@ vim.cmd [[
   nmap <C-p> <Plug>yankstack_substitute_older_paste
   nmap <C-n> <Plug>yankstack_substitute_newer_paste
   let g:yankstack_yank_keys = ['c', 'C', 'd', 'D', 's', 'S', 'x', 'X', 'y', 'Y']
-
 ]]
 
 vim.api.nvim_create_autocmd('TextYankPost', {
