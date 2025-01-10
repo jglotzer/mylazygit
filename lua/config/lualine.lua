@@ -31,8 +31,12 @@ require 'lualine'.setup {
         }
       },
       { 'diagnostics',
+        source = { "nvim_diagnostic" },
         symbols = {
-          error = { ' ', warn = ' ', info = ' ', hint = ' ' }
+           error = ' ',
+           warn = ' ',
+           info = ' ',
+           hint = ' '
         }
       }
     },
