@@ -20,6 +20,9 @@ vim.api.nvim_create_user_command(
 -- diffoff to get out
 -- extra flourish swap buffers at end so saved version is on left.
 -- https://unix.stackexchange.com/questions/46827/vim-executing-a-key-command-in-a-function
+-- Other options is normal 
+-- or call feedkeys()
+-- where above is gotten by typing ctrl-v ctrl-c then ctrl-v ctrl-r
 vim.cmd [[
 function! s:DiffWithSaved()
   let myfiletype=&ft
