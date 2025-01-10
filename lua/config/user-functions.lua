@@ -24,13 +24,13 @@ vim.api.nvim_create_user_command(
 -- or call feedkeys()
 -- where above is gotten by typing ctrl-v ctrl-c then ctrl-v ctrl-r
 vim.cmd [[
-function! s:DiffWithSaved()
-  let myfiletype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . myfiletype
-  exe "normal \<C-W>\<C-R>"
-endfunction
-com! DiffSaved call s:DiffWithSaved()
+  function! s:DiffWithSaved()
+    let myfiletype=&ft
+    diffthis
+    vnew | r # | normal! 1Gdd
+    diffthis
+    exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . myfiletype
+    exe "normal \<C-W>\<C-R>"
+  endfunction
+  com! DiffSaved call s:DiffWithSaved()
 ]]
