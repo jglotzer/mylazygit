@@ -34,5 +34,3 @@ vim.keymap.set("n", "<M-Down>", "<c-W>5-<", { desc = "Alt down arrow to move spl
 
 vim.keymap.set("n", "<leader><CR>", "<cmd>source /home/jglotzer/.lazy/nvim/init.lua <CR>",
   { desc = "Source init.lua (shoutout)", noremap = true, silent = true })
-
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "vim.lsp.buf.rename", noremap = true, silent = true })
