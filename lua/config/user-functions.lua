@@ -18,6 +18,8 @@ vim.api.nvim_create_user_command(
 
 -- Kind of weak to use vimscript but anyway ...
 -- diffoff to get out
+-- extra flourish swap buffers at end so saved version is on left.
+-- https://unix.stackexchange.com/questions/46827/vim-executing-a-key-command-in-a-function
 vim.cmd [[
 function! s:DiffWithSaved()
   let myfiletype=&ft
@@ -25,6 +27,7 @@ function! s:DiffWithSaved()
   vnew | r # | normal! 1Gdd
   diffthis
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . myfiletype
+  exe "normal \<C-W>\<C-R>"
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 ]]
