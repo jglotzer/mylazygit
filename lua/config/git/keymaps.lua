@@ -11,8 +11,9 @@ vim.opt.diffopt:append('algorithm:patience')
 vim.opt.diffopt:append('indent-heuristic')
 
 -- Quick conflict resolution
-vim.keymap.set('n', '<leader>gf', ':diffget 1<CR>')  -- get from left
-vim.keymap.set('n', '<leader>gj', ':diffget 2<CR>')  -- get from right
+vim.keymap.set('n', '<leader>dg1', ':diffget 1<CR>')  -- get from left
+vim.keymap.set('n', '<leader>dg2', ':diffget 2<CR>')  -- get from right
+vim.keymap.set('n', '<leader>dp',  ':diffput 3<CR>')  -- put from this buffer
 
 -- Show conflict stats
 vim.cmd([[
