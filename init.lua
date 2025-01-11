@@ -10,6 +10,3 @@ require("config.undotree.keymaps")
 require("config.fzf.keymaps")
 require("config.trailing_ws")
 require("config.git.keymaps")
--- myfoo
--- mybar
--- mybaz
