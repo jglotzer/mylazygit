@@ -34,3 +34,10 @@ vim.cmd [[
   endfunction
   com! DiffSaved call s:DiffWithSaved()
 ]]
+
+vim.cmd [[
+  function! s:SetSyntaxShell()
+    set syntax=sh
+  endfunction
+  com! SyntaxShell call s:SetSyntaxShell()
+]]
