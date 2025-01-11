@@ -1,0 +1,20 @@
+{
+  "name": "my-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "shellscript",
+          "shell",
+          "sh",
+          "bash",
+          "zsh"
+        ],
+        "path": "./snippets/bash.json"
+      }
+    ]
+  }
+}

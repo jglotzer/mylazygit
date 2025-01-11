@@ -1,0 +1,13 @@
+{
+  "numargs": {
+    "prefix": "numargs",
+    "body": "if [[ $# -ne ${1:condition} ]]; then\n\techo \"Error: Wrong number of arguments. Expected ${1}.\"\n\texit 1\nfi",
+    "description": "A test for number of args in bash."
+  },
+
+  "myshebang": {
+    "prefix": "myshebang",
+    "body": "#! /usr/bin/bash",
+    "description" : "Just a simple shebang please."
+  }
+}
