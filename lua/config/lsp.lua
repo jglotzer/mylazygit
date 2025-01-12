@@ -119,7 +119,7 @@ cmp.setup({
     { name = "luasnip",                option = { show_autosnippets = true } },
     { name = "nvim_lsp",               max_item_count = 8 },
     { name = "path" },
-    { name = "buffer",                 keyword_length = 4,                 max_item_count = 8 },
+    { name = "buffer",                 keyword_length = 4,                   max_item_count = 8 },
   },
   -- More TJ
   experimental = {
@@ -175,21 +175,33 @@ local on_attach = function(client, bufnr)
   -- That is the thing that caused a lot of confusion and may in fact be what led
   -- me to have the two configs to begin with.
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_deep_extend("error",
+    { desc = "LSP Buf Hover" }, bufopts))
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_deep_extend("error",
+    { desc = "LSP Buf Goto Declaration" }, bufopts))
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_deep_extend("error",
+    { desc = "LSP Buf Goto Definition" }, bufopts))
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, vim.tbl_deep_extend("error",
+    { desc = "LSP Buf Goto Implementation" }, bufopts))
   vim.keymap.set('n', ']e', function() vim.diagnostic.jump({ count = 1 }) end)
   vim.keymap.set('n', '[e', function() vim.diagnostic.jump({ count = -1 }) end)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  --vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format { async = true } end, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>E', vim.diagnostic.open_float, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
-  vim.keymap.set('v', '<space>f', vim.lsp.buf.format, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, vim.tbl_deep_extend("error",
+    { desc = "LSP Buf Goto Type Definition" }, bufopts))
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, vim.tbl_deep_extend("error",
+    { desc = "LSP Buf Rename" }, bufopts))
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, vim.tbl_deep_extend("error",
+    { desc = "LSP Buf Code Action" }, bufopts))
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf References" }, bufopts))
+  vim.keymap.set('n', '<space>ZZZ', function() vim.lsp.buf.format { async = true } end, { desc = "Format Async" })
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, vim.tbl_deep_extend("error",
+    { desc = "LSP Buf Signature help" }, bufopts))
+  vim.keymap.set('n', '<space>E', vim.diagnostic.open_float, vim.tbl_deep_extend("error",
+    { desc = "Open Diagnostic Float" }, bufopts))
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.format, vim.tbl_deep_extend("error",
+    { desc = "LSP Buf Format" }, bufopts))
+  vim.keymap.set('v', '<space>f', vim.lsp.buf.format, vim.tbl_deep_extend("error",
+    { desc = "LSP Buf Format" }, bufopts))
 end
 
 -- See https://github.com/LunarVim/LunarVim/issues/2597
@@ -480,6 +492,6 @@ end
 
 require("luasnip.loaders.from_vscode").lazy_load({
   paths = snippets_paths(),
-  include = nil,  -- Load all languages
+  include = nil, -- Load all languages
   exclude = {},
 })
