@@ -2,9 +2,7 @@ return {
   "folke/neodev.nvim",
   --{"catppuccin/nvim", name = "catppuccin", priority = 1000},
   "nvim-telescope/telescope.nvim",
-  --"saghen/blink.cmp",
   "mbbill/undotree",
-  --"ellisonleao/gruvbox.nvim",
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig",
@@ -34,6 +32,4 @@ return {
   "simrat39/rust-tools.nvim",
   "ibhagwan/fzf-lua",
   "junegunn/gv.vim",
-  --"chrisbra/vim-diff-enhanced",
-  -- "ntpeters/vim-better-whitespace",
 }
