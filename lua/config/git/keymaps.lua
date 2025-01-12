@@ -10,10 +10,14 @@ vim.keymap.set('n', '<leader>gm', ':Git mergetool<CR>', { desc = 'Git Merge' })
 vim.opt.diffopt:append('algorithm:patience')
 vim.opt.diffopt:append('indent-heuristic')
 
+local bufopts = { noremap = true, silent = true }
 -- Conflict resolution
-vim.keymap.set('n', '<leader>m1', ':diffget 1<CR>', { desc = 'merge from left buffer' })
-vim.keymap.set('n', '<leader>m2', ':diffget 2<CR>', { desc = 'merge from right buffer' })
-vim.keymap.set('n', '<leader>mp', ':diffput 3<CR>', { desc = 'merge from this buffer' })
+vim.keymap.set('n', '<leader>d1', ':diffget 1 <CR>',
+  vim.tbl_deep_extend("error", bufopts, { desc = 'Diffget from left buffer' }))
+vim.keymap.set('n', '<leader>d2', ':diffget 2 <CR>',
+  vim.tbl_deep_extend("error", bufopts, { desc = 'Diffget from right buffer' }))
+vim.keymap.set('n', '<leader>dp', ':diffput 3 <CR>',
+  vim.tbl_deep_extend("error", bufopts, { desc = 'Diffput from this buffer' }))
 
 -- Show conflict stats
 -- Not super interesting
