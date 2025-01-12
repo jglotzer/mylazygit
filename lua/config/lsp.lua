@@ -193,7 +193,7 @@ local on_attach = function(client, bufnr)
     { desc = "LSP Buf Code Action" }, bufopts))
   vim.keymap.set('n', 'gr', vim.lsp.buf.references,
     vim.tbl_deep_extend("error", { desc = "LSP Buf References" }, bufopts))
-  vim.keymap.set('n', '<space>ZZZ', function() vim.lsp.buf.format { async = true } end, { desc = "Format Async" })
+  vim.keymap.set('n', '<space>ZZ', function() vim.lsp.buf.format { async = true } end, { desc = "Format Async" })
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Signature help" }, bufopts))
   vim.keymap.set('n', '<space>E', vim.diagnostic.open_float, vim.tbl_deep_extend("error",
