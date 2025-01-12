@@ -23,9 +23,11 @@ vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 vim.cmd([[
   set t_Co=256
+  " https://www.reddit.com/r/neovim/comments/nchmrn/new_diff_option_for_better_2_and_3_buffer_diff/
+  " set diffopt+=linematch:50
   ]])
 vim.cmd.colorscheme "koehler"
---vim.cmd.colorscheme "catppuccin-macchiato"
+-- vim.cmd.colorscheme "catppuccin-macchiato"
 vim.opt.background = "dark"
 vim.opt.compatible = false
 vim.opt.foldmethod = "marker"
