@@ -169,11 +169,6 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  -- TODO: XXX doing this in two places.
-  -- So yes doing this in two places. One thing is that we have plugin rust-tools
-  -- which overrides the rust config here but then the one in init.vim overrides that one.
-  -- That is the thing that caused a lot of confusion and may in fact be what led
-  -- me to have the two configs to begin with.
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Hover" }, bufopts))
