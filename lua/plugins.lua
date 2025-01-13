@@ -6,7 +6,7 @@ return {
   "williamboman/mason.nvim",
   "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig",
-  "L3MON4D3/LuaSnip", dependencies = {"rafamadriz/friendly-snippets"},
+  {"L3MON4D3/LuaSnip", dependencies = {"rafamadriz/friendly-snippets"}, tag = "v2.3.0", build = "make install_jsregexp"},
   "rafamadriz/friendly-snippets",
   "preservim/nerdtree",
   "tpope/vim-fugitive",
