@@ -484,7 +484,7 @@ local snippets_paths = function()
   table.insert(paths, friendly_snippet_path)
   local lua_snippet_path = friendly_snippet_path_root .. '/snippets/lua'
   table.insert(paths, lua_snippet_path)
-  -- print(dump(paths))
+  --print(dump(paths))
   return paths
 end
 
