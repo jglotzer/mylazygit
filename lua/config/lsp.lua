@@ -464,24 +464,27 @@ lspconfig.lua_ls.setup(config({
 }))
 
 local snippets_paths = function()
-  local plugins = { "friendly-snippets" }
+  -- local plugins = { "friendly-snippets" }
+  -- local paths = {}
+  -- local path
+  -- local root_path = vim.env.HOME .. "/.config/nvim/plugged/"
+  -- local root_path = "/home/jglotzer/.local/share/nvim/lazy"
+  -- for _, plug in ipairs(plugins) do
+  --   path = root_path .. plug
+  --   if vim.fn.isdirectory(path) ~= 0 then
+  --     table.insert(paths, path)
+  --   end
+  -- end
   local paths = {}
-  local path
-  local root_path = vim.env.HOME .. "/.config/nvim/plugged/"
-  for _, plug in ipairs(plugins) do
-    path = root_path .. plug
-    if vim.fn.isdirectory(path) ~= 0 then
-      table.insert(paths, path)
-    end
-  end
-  -- /home/jglotzer/.local/share/nvim/lazy/friendly-snippets/
-  local my_snippet_path = "/home/jglotzer/.lazy/nvim/my-snippets"
+  local friendly_snippet_path_root = '/home/jglotzer/.local/share/nvim/lazy/friendly-snippets'
+  table.insert(paths, friendly_snippet_path_root)
+  local my_snippet_path = "/home/jglotzer/.config/nvim/my-snippets"
   table.insert(paths, my_snippet_path)
-  local friendly_snippet_path = '/home/jglotzer/.local/share/nvim/lazy/friendly-snippets/snippets'
+  local friendly_snippet_path = friendly_snippet_path_root .. '/snippets'
   table.insert(paths, friendly_snippet_path)
-  local lua_snippet_path = '/home/jglotzer/.local/share/nvim/lazy/friendly-snippets/snippets/lua'
+  local lua_snippet_path = friendly_snippet_path_root .. '/snippets/lua'
   table.insert(paths, lua_snippet_path)
-  --print(dump(paths))
+  -- print(dump(paths))
   return paths
 end
 
