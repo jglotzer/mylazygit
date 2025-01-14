@@ -1,5 +1,6 @@
 require("config.lazy")
 require("config.lsp")
+require("config.luasnip.config")
 require("config.lualine")
 require("config.yankstack")
 require("config.keymaps")
