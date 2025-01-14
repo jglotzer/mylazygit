@@ -476,13 +476,13 @@ local snippets_paths = function()
   --   end
   -- end
   local paths = {}
-  local friendly_snippet_path_root = '/home/jglotzer/.local/share/nvim/lazy/friendly-snippets'
-  table.insert(paths, friendly_snippet_path_root)
+  local friendly_root = '/home/jglotzer/.local/share/nvim/lazy/friendly-snippets'
+  table.insert(paths, friendly_root)
   local my_snippet_path = "/home/jglotzer/.config/nvim/my-snippets"
   table.insert(paths, my_snippet_path)
-  local friendly_snippet_path = friendly_snippet_path_root .. '/snippets'
+  local friendly_snippet_path = friendly_root .. '/snippets'
   table.insert(paths, friendly_snippet_path)
-  local lua_snippet_path = friendly_snippet_path_root .. '/snippets/lua'
+  local lua_snippet_path = friendly_root .. '/snippets/lua'
   table.insert(paths, lua_snippet_path)
   --print(dump(paths))
   return paths
