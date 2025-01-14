@@ -61,3 +61,6 @@ vim.opt.foldlevel = 999
 vim.opt.textwidth = 100
 vim.opt.clipboard = "unnamedplus"
 vim.opt.list = true
+-- TJ likes it.
+-- This shows the replacements live before you hit return.
+vim.opt.inccommand = "split"
