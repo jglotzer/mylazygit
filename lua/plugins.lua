@@ -16,7 +16,6 @@ return {
   {"nvim-lualine/lualine.nvim", dependencies = {"nvim-tree/nvim-web-devicons"}},
   "akinsho/bufferline.nvim",
   "maxbrunsfeld/vim-yankstack",
-  {"folke/neoconf.nvim", cmd = "Neoconf"},
   "mhinz/vim-signify",
   "farmergreg/vim-lastplace",
   "hrsh7th/nvim-cmp",
