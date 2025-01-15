@@ -1,4 +1,3 @@
---local capabilities = vim.lsp.protocol.make_client_capabilities()
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.diagnostic.config({ jump = { float = true } })
@@ -464,30 +463,14 @@ lspconfig.lua_ls.setup(config({
 }))
 
 local snippets_paths = function()
-  -- local plugins = { "friendly-snippets" }
   -- local paths = {}
-  -- local path
-  -- local root_path = vim.env.HOME .. "/.config/nvim/plugged/"
-  -- local root_path = "/home/jglotzer/.local/share/nvim/lazy"
-  -- for _, plug in ipairs(plugins) do
-  --   path = root_path .. plug
-  --   if vim.fn.isdirectory(path) ~= 0 then
-  --     table.insert(paths, path)
-  --   end
-  -- end
-  local paths = {}
-  local friendly_root = '/home/jglotzer/.local/share/nvim/lazy/friendly-snippets'
-  table.insert(paths, friendly_root)
-  local my_snippet_path = "/home/jglotzer/.config/nvim/my-snippets"
-  table.insert(paths, my_snippet_path)
-  local friendly_snippet_path = friendly_root .. '/snippets'
-  table.insert(paths, friendly_snippet_path)
-  local lua_snippet_path = friendly_root .. '/snippets/lua'
-  table.insert(paths, lua_snippet_path)
-  --print(dump(paths))
+  local friendly_snippets = '/home/jglotzer/.local/share/nvim/lazy/friendly-snippets'
+  local my_snippets = "/home/jglotzer/.config/nvim/my-snippets"
+  local paths = { friendly_snippets, my_snippets }
   return paths
 end
 
+luasnip.filetype_extend("bash", {"shell"})
 require("luasnip.loaders.from_vscode").lazy_load({
   paths = snippets_paths(),
   include = nil, -- Load all languages
