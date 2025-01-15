@@ -463,7 +463,6 @@ lspconfig.lua_ls.setup(config({
 }))
 
 local snippets_paths = function()
-  -- local paths = {}
   local friendly_snippets = '/home/jglotzer/.local/share/nvim/lazy/friendly-snippets'
   local my_snippets = "/home/jglotzer/.config/nvim/my-snippets"
   local paths = { friendly_snippets, my_snippets }
