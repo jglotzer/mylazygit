@@ -1,5 +1,5 @@
 return {
-  "folke/neodev.nvim",
+  -- "folke/neodev.nvim",
   --{"catppuccin/nvim", name = "catppuccin", priority = 1000},
   "nvim-telescope/telescope.nvim",
   "mbbill/undotree",
