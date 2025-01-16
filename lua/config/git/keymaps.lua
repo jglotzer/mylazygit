@@ -12,11 +12,16 @@ vim.opt.diffopt:append('indent-heuristic')
 
 local bufopts = { noremap = true, silent = true }
 -- Conflict resolution
+-- Some merges may be three way, while others may be four way.
 vim.keymap.set('n', '<leader>d1', ':diffget 1 <CR>',
   vim.tbl_deep_extend("error", bufopts, { desc = 'Diffget from left buffer' }))
 vim.keymap.set('n', '<leader>d2', ':diffget 2 <CR>',
   vim.tbl_deep_extend("error", bufopts, { desc = 'Diffget from right buffer' }))
-vim.keymap.set('n', '<leader>dp', ':diffput 3 <CR>',
+vim.keymap.set('n', '<leader>d3', ':diffget 3 <CR>',
+  vim.tbl_deep_extend("error", bufopts, { desc = 'Diffget from right buffer' }))
+vim.keymap.set('n', '<leader>dp3', ':diffput 3 <CR>',
+  vim.tbl_deep_extend("error", bufopts, { desc = 'Diffput from this buffer' }))
+vim.keymap.set('n', '<leader>dp4', ':diffput 4 <CR>',
   vim.tbl_deep_extend("error", bufopts, { desc = 'Diffput from this buffer' }))
 
 -- Show conflict stats
