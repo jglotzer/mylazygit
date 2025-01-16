@@ -469,7 +469,7 @@ local snippets_paths = function()
   return paths
 end
 
-luasnip.filetype_extend("bash", {"shell"})
+luasnip.filetype_extend("bash", { "shell" })
 require("luasnip.loaders.from_vscode").lazy_load({
   paths = snippets_paths(),
   include = nil, -- Load all languages
