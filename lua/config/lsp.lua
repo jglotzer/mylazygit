@@ -469,6 +469,26 @@ local snippets_paths = function()
 end
 
 luasnip.filetype_extend("bash", { "shell" })
+local types = require "luasnip.util.types"
+luasnip.config.set_config {
+  -- This tells Luasnip to remember to keep around the last snippet.
+  -- You can jump back to into it even if you move outside the selection.
+  history = true,
+
+  -- This one is cool cause if you have dynamic snippets, it updates as you type!
+  updateevents = "TextChanged, TextChangedI",
+
+  -- Autosnippets:
+  enable_autosnippets = true,
+
+  ext_opts = {
+    [types.choiceNode] = {
+      active = {
+        virt_text = { { "⟵", "Error" } },
+      },
+    },
+  },
+}
 require("luasnip.loaders.from_vscode").lazy_load({
   paths = snippets_paths(),
   include = nil, -- Load all languages
