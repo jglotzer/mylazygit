@@ -1,4 +1,5 @@
 require("config.lazy")
+require("config.sets")
 require("config.lsp")
 -- require("config.luasnip.config")
 require("config.lualine")

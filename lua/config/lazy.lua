@@ -33,4 +33,3 @@ require("lazy").setup({
   -- automatically check for plugin updates (every 24 hours)
   checker = { enabled = true, frequency = 86400 },
 })
-require("config.sets")
