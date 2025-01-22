@@ -32,5 +32,5 @@ vim.keymap.set("n", "<M-Right>", "<c-w>5<",
 vim.keymap.set("n", "<M-Up>", "<c-W>5+>", { desc = "Alt up arrow to move split up", noremap = true, silent = true })
 vim.keymap.set("n", "<M-Down>", "<c-W>5-<", { desc = "Alt down arrow to move split down", noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader><CR>", "<cmd>source /home/jglotzer/.lazy/nvim/init.lua <CR>",
+vim.keymap.set("n", "<leader><CR>", "<cmd>source /home/jglotzer/.config/nvim/init.lua<CR>",
   { desc = "Source init.lua (shoutout)", noremap = true, silent = true })

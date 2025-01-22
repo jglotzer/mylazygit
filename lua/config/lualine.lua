@@ -1,9 +1,9 @@
 require 'lualine'.setup {
   options = {
     icons_enabled = true,
-    --theme = 'dracula',
+    theme = 'dracula',
     --theme = 'solarized_light',
-    theme = 'papercolor_light',
+    --theme = 'papercolor_light',
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
@@ -22,10 +22,11 @@ require 'lualine'.setup {
   sections = {
     lualine_a = { 'mode' },
     lualine_b = {
+      { 'branch' },
       { 'diff',
         colored = true,
         diff_color = {
-          added = { fg = 'green' },
+          added = { fg = 'darkgreen' },
           modified = { fg = 'blue' },
           removed = { fg = 'red' },
         }
