@@ -1,0 +1,7 @@
+{
+  "newitem": {
+    "prefix": "newi",
+    "body": "- [ ] ",
+    "description": "Add a new item to ToDo List."
+  }
+}
