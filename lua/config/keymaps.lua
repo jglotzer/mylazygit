@@ -34,3 +34,14 @@ vim.keymap.set("n", "<M-Down>", "<c-W>5-<", { desc = "Alt down arrow to move spl
 
 vim.keymap.set("n", "<leader><CR>", "<cmd>source /home/jglotzer/.config/nvim/init.lua<CR>",
   { desc = "Source init.lua (shoutout)", noremap = true, silent = true })
+
+-- Could make this more complicated but for now this seems a decent start.
+function AutoCompleteOff()
+    require('cmp').setup({
+      completion = {
+        autocomplete = false
+      }
+    })
+end
+vim.cmd('command AutoCmpOff lua AutoCompleteOff()')
+
