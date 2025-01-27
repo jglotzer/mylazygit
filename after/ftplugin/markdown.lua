@@ -13,4 +13,4 @@ vim.keymap.set("n", "k", "gk")
 -- z= also gives spelling suggestions
 -- zg marks word as correct
 vim.opt.spelllang = 'en_us,fr'
-vim.opt.spell = true
+-- vim.opt.spell = true
