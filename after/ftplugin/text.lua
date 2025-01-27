@@ -9,5 +9,8 @@ vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
 -- Spell check
-vim.opt.spelllang = 'en_us'
+-- <space>ss gives spelling suggestions via FZF
+-- z= also gives spelling suggestions
+-- zg marks word as correct
+vim.opt.spelllang = 'en_us,fr'
 vim.opt.spell = true
