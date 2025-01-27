@@ -41,3 +41,11 @@ vim.cmd [[
   endfunction
   com! SyntaxShell call s:SetSyntaxShell()
 ]]
+
+vim.cmd [[
+  function! s:ToggleSpellCheck()
+    set invspell
+  endfunction
+  com! ToggleSpell call s:ToggleSpellCheck()
+  nnoremap <leader>sp :ToggleSpell<CR>
+]]
