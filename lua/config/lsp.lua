@@ -423,6 +423,12 @@ lspconfig.pyright.setup {
   on_attach = on_attach
 }
 
+lspconfig.ts_ls.setup{
+  on_attach = on_attach,
+  filetypes = { "javascript", "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" }
+}
+
 local lua_ls_binary = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/lua-language-server"
 local lua_ls_root_path = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/libexec"
 lspconfig.lua_ls.setup(config({
