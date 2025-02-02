@@ -429,6 +429,20 @@ lspconfig.ts_ls.setup{
   cmd = { "typescript-language-server", "--stdio" }
 }
 
+local null_ls = require("null-ls")
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
+  sources = {
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.completion.spell,
+    require("none-ls.diagnostics.eslint"),
+    null_ls.builtins.formatting.prettier.with {
+      enabled_filetypes = { "javascript", "typescript", }
+    }
+    -- require("none-ls.diagnostics.prettier"),
+  },
+})
+
 local lua_ls_binary = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/lua-language-server"
 local lua_ls_root_path = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/libexec"
 lspconfig.lua_ls.setup(config({

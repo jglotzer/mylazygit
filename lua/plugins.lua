@@ -31,4 +31,5 @@ return {
   "simrat39/rust-tools.nvim",
   "ibhagwan/fzf-lua",
   "junegunn/gv.vim",
+  {"nvimtools/none-ls.nvim", dependencies = {"nvimtools/none-ls-extras.nvim"}},
 }
