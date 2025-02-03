@@ -1,4 +1,4 @@
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.diagnostic.config({ jump = { float = true } })
 
@@ -41,14 +41,14 @@ end
 local lspkind = require("lspkind")
 lspkind.init({
   --with_text = true,
-  mode = 'symbol_text',
-  preset = 'codicons', --very, very important!
+  mode = "symbol_text",
+  preset = "codicons", --very, very important!
 })
 -- OK I got codicons working but I guess I sill don't have the function, operator, all that stuff showing up.
 
 cmp.setup({
   completion = {
-    completeopt = 'menu, menuone, noselect'
+    completeopt = "menu, menuone, noselect",
   },
   dependencies = {
     "onsails/lspkind.nvim",
@@ -72,12 +72,12 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   mapping = {
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-    ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-e>'] = cmp.mapping.close(),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+    ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-e>"] = cmp.mapping.close(),
 
     --['Tab'] = tab_key, --again this the aforementioned workaround.
     --I got this from TJ during his video let's see how well it do!
@@ -104,9 +104,9 @@ cmp.setup({
         fallback()
       end
     end,
-    ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-    ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true })
+    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
   },
   -- You can also configure
   -- keyword_length (this is when stuff starts showing up)
@@ -131,28 +131,28 @@ cmp.setup({
       vim_item.kind = lspkind.presets.codicons[vim_item.kind]
       local menu = source_mapping[entry.source.name]
       if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-        menu = entry.completion_item.data.detail .. ' ' .. menu
+        menu = entry.completion_item.data.detail .. " " .. menu
       end
       vim_item.menu = menu
       return vim_item
-    end
+    end,
   },
-  cmp.setup.cmdline(':', {
+  cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(), -- important!
     sources = {
-      { name = 'nvim_lua' },
-      { name = 'cmdline' },
+      { name = "nvim_lua" },
+      { name = "cmdline" },
     },
   }),
-  cmp.setup.cmdline('/', {
+  cmp.setup.cmdline("/", {
     mapping = cmp.mapping.preset.cmdline(), -- important!
     sources = {
-      { name = 'buffer' },
-      { name = 'path' },
+      { name = "buffer" },
+      { name = "path" },
     },
-  })
+  }),
 })
-require('cmp_luasnip')
+require("cmp_luasnip")
 
 local function config(_config)
   return vim.tbl_deep_extend("force", {
@@ -169,32 +169,32 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, vim.tbl_deep_extend("error",
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Hover" }, bufopts))
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_deep_extend("error",
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Goto Declaration" }, bufopts))
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_deep_extend("error",
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Goto Definition" }, bufopts))
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, vim.tbl_deep_extend("error",
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Goto Implementation" }, bufopts))
-  vim.keymap.set('n', ']e', function() vim.diagnostic.jump({ count = 1 }) end)
-  vim.keymap.set('n', '[e', function() vim.diagnostic.jump({ count = -1 }) end)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, vim.tbl_deep_extend("error",
+  vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = 1 }) end)
+  vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = -1 }) end)
+  vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Goto Type Definition" }, bufopts))
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, vim.tbl_deep_extend("error",
+  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Rename" }, bufopts))
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, vim.tbl_deep_extend("error",
+  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Code Action" }, bufopts))
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references,
+  vim.keymap.set("n", "gr", vim.lsp.buf.references,
     vim.tbl_deep_extend("error", { desc = "LSP Buf References" }, bufopts))
-  vim.keymap.set('n', '<space>ZZ', function() vim.lsp.buf.format { async = true } end, { desc = "Format Async" })
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, vim.tbl_deep_extend("error",
+  vim.keymap.set("n", "<space>ZZ", function() vim.lsp.buf.format { async = true } end, { desc = "Format Async" })
+  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Signature help" }, bufopts))
-  vim.keymap.set('n', '<space>E', vim.diagnostic.open_float, vim.tbl_deep_extend("error",
+  vim.keymap.set("n", "<space>E", vim.diagnostic.open_float, vim.tbl_deep_extend("error",
     { desc = "Open Diagnostic Float" }, bufopts))
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.format, vim.tbl_deep_extend("error",
+  vim.keymap.set("n", "<space>f", vim.lsp.buf.format, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Format" }, bufopts))
-  vim.keymap.set('v', '<space>f', vim.lsp.buf.format, vim.tbl_deep_extend("error",
+  vim.keymap.set("v", "<space>f", vim.lsp.buf.format, vim.tbl_deep_extend("error",
     { desc = "LSP Buf Format" }, bufopts))
 end
 
@@ -228,15 +228,15 @@ lspconfig.clangd.setup(config({
     ---@diagnostic disable-next-line: undefined-field
     return vim.uv.cwd()
   end,
-  on_attach = on_attach
+  on_attach = on_attach,
 }))
 
-lspconfig.bashls.setup {
+lspconfig.bashls.setup({
   capabilities = capabilities,
   cmd = { "/home/jglotzer/.local/share/nvim/mason/bin/bash-language-server", "start" },
   snippetSupport = true,
-  on_attach = on_attach
-}
+  on_attach = on_attach,
+})
 
 local rust_opts = {
   tools = { -- rust-tools options
@@ -415,31 +415,43 @@ local rust_opts = {
   },
 }
 
-require('rust-tools').setup(rust_opts)
+require("rust-tools").setup(rust_opts)
 
-lspconfig.pyright.setup {
+lspconfig.pyright.setup({
   capabilities = capabilities,
   snippetSupport = true,
-  on_attach = on_attach
-}
-
-lspconfig.ts_ls.setup{
   on_attach = on_attach,
-  filetypes = { "javascript", "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" }
-}
+})
+
+lspconfig.ts_ls.setup({
+  on_attach = on_attach,
+  filetypes = {
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescriptreact",
+    "typescript.tsx",
+  },
+  cmd = { "typescript-language-server", "--stdio" },
+})
 
 local null_ls = require("null-ls")
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.completion.spell,
-    require("none-ls.diagnostics.eslint"),
-    null_ls.builtins.formatting.prettier.with {
-      enabled_filetypes = { "javascript", "typescript", }
-    }
-    -- require("none-ls.diagnostics.prettier"),
+    null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.formatting.prettier.with({
+      enabled_filetypes = {
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+    }),
   },
 })
 
@@ -483,14 +495,14 @@ lspconfig.lua_ls.setup(config({
 }))
 
 local snippets_paths = function()
-  local friendly_snippets = '/home/jglotzer/.local/share/nvim/lazy/friendly-snippets'
+  local friendly_snippets = "/home/jglotzer/.local/share/nvim/lazy/friendly-snippets"
   local my_snippets = "/home/jglotzer/.config/nvim/my-snippets"
   return { friendly_snippets, my_snippets }
 end
 
 luasnip.filetype_extend("bash", { "shell" })
-local types = require "luasnip.util.types"
-luasnip.config.set_config {
+local types = require("luasnip.util.types")
+luasnip.config.set_config({
   -- This tells Luasnip to remember to keep around the last snippet.
   -- You can jump back to into it even if you move outside the selection.
   history = true,
@@ -508,7 +520,7 @@ luasnip.config.set_config {
       },
     },
   },
-}
+})
 require("luasnip.loaders.from_vscode").lazy_load({
   paths = snippets_paths(),
   include = nil, -- Load all languages
