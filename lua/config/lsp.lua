@@ -423,16 +423,18 @@ lspconfig.pyright.setup({
   on_attach = on_attach,
 })
 
+local js_filetypes = {
+  "javascript",
+  "typescript",
+  "javascriptreact",
+  "javascript.jsx",
+  "typescriptreact",
+  "typescript.tsx",
+}
+
 lspconfig.ts_ls.setup({
   on_attach = on_attach,
-  filetypes = {
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescriptreact",
-    "typescript.tsx",
-  },
+  filetypes = js_filetypes,
   cmd = { "typescript-language-server", "--stdio" },
 })
 
@@ -443,14 +445,7 @@ null_ls.setup({
     null_ls.builtins.completion.spell,
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.formatting.prettier.with({
-      enabled_filetypes = {
-        "javascript",
-        "typescript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescriptreact",
-        "typescript.tsx",
-      },
+      enabled_filetypes = js_filetypes,
     }),
   },
 })
