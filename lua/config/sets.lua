@@ -64,3 +64,6 @@ vim.opt.list = true
 -- TJ likes it.
 -- This shows the replacements live before you hit return.
 vim.opt.inccommand = "split"
+-- https://www.reddit.com/r/neovim/comments/1ihpvaf/the_linematch_diffopt_makes_builtin_diff_so_sweat/
+-- https://github.com/neovim/neovim/pull/14537
+vim.opt.diffopt = "internal,filler,closeoff,linematch:60"
