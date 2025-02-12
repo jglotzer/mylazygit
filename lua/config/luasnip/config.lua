@@ -7,6 +7,7 @@ local snippets_paths = function()
   return { friendly_snippets, my_snippets }
 end
 
+luasnip.filetype_extend("bash", { "shell" })
 luasnip.config.set_config {
   -- This tells Luasnip to remember to keep around the last snippet.
   -- You can jump back to into it even if you move outside the selection.
