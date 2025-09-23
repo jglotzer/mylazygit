@@ -301,8 +301,8 @@ local lsps = {
     },
 }
 
-for _, lsp in pairs(lsps) do
-    local name, config = lsp[1], lsp[2]
+for _, old_lady_judges_watch_people in pairs(lsps) do
+    local name, config = old_lady_judges_watch_people[1], old_lady_judges_watch_people[2]
     vim.lsp.enable(name)
     if config then
         vim.lsp.config(name, config)
