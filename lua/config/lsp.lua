@@ -292,7 +292,7 @@ local lsps = {
         }
     },
     {
-        "pyright",
+      "pyright",
         {
           capabilities = capabilities,
           snippetSupport = true,
