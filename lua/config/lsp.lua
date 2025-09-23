@@ -3,6 +3,14 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.diagnostic.config({ jump = { float = true } })
 local lua_ls_binary = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/lua-language-server"
 local lua_ls_root_path = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/libexec"
+local js_filetypes = {
+  "javascript",
+  "typescript",
+  "javascriptreact",
+  "javascript.jsx",
+  "typescriptreact",
+  "typescript.tsx",
+}
 
 -- Nice utility function gotten from
 -- https://stackoverflow.com/questions/9168058/how-to-dump-a-table-to-console
@@ -300,15 +308,6 @@ for _, lsp in pairs(lsps) do
         vim.lsp.config(name, config)
     end
 end
-
-local js_filetypes = {
-  "javascript",
-  "typescript",
-  "javascriptreact",
-  "javascript.jsx",
-  "typescriptreact",
-  "typescript.tsx",
-}
 
 local null_ls = require("null-ls")
 null_ls.setup({
