@@ -1,6 +1,8 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.diagnostic.config({ jump = { float = true } })
+local lua_ls_binary = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/lua-language-server"
+local lua_ls_root_path = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/libexec"
 
 -- Nice utility function gotten from
 -- https://stackoverflow.com/questions/9168058/how-to-dump-a-table-to-console
@@ -154,12 +156,6 @@ cmp.setup({
 })
 require("cmp_luasnip")
 
-local function config(_config)
-  return vim.tbl_deep_extend("force", {
-    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
-  }, _config or {})
-end
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 ---@diagnostic disable-next-line: unused-local
@@ -218,210 +214,92 @@ local clangd_flags = {
 
 local clangd_bin = "clangd"
 local clangd_cmd = { clangd_bin, unpack(clangd_flags) }
-local lspconfig = require("lspconfig")
-
-lspconfig.clangd.setup(config({
-  --cmd = { "clangd", "--background-index", "--log=verbose" },
-  --cmd = { "clangd", "--background-index", "--log=info" },
-  cmd = clangd_cmd,
-  root_dir = function()
-    ---@diagnostic disable-next-line: undefined-field
-    return vim.uv.cwd()
-  end,
-  on_attach = on_attach,
-}))
-
-lspconfig.bashls.setup({
-  capabilities = capabilities,
-  cmd = { "/home/jglotzer/.local/share/nvim/mason/bin/bash-language-server", "start" },
-  snippetSupport = true,
-  on_attach = on_attach,
-})
-
-local rust_opts = {
-  tools = { -- rust-tools options
-
-    -- how to execute terminal commands
-    -- options right now: termopen / quickfix / toggleterm / vimux
-    executor = require("rust-tools.executors").termopen,
-
-    -- callback to execute once rust-analyzer is done initializing the workspace
-    -- The callback receives one parameter indicating the `health` of the server: "ok" | "warning" | "error"
-    on_initialized = nil,
-
-    -- automatically call RustReloadWorkspace when writing to a Cargo.toml file.
-    reload_workspace_from_cargo_toml = true,
-
-    -- These apply to the default RustSetInlayHints command
-    inlay_hints = {
-      -- automatically set inlay hints (type hints)
-      -- default: true
-      auto = true,
-
-      -- Only show inlay hints for the current line
-      only_current_line = false,
-
-      -- whether to show parameter hints with the inlay hints or not
-      -- default: true
-      show_parameter_hints = true,
-
-      -- prefix for parameter hints
-      -- default: "<-"
-      parameter_hints_prefix = "<- ",
-
-      -- prefix for all the other hints (type, chaining)
-      -- default: "=>"
-      other_hints_prefix = "=> ",
-
-      -- whether to align to the length of the longest line in the file
-      max_len_align = false,
-
-      -- padding from the left if max_len_align is true
-      max_len_align_padding = 1,
-
-      -- whether to align to the extreme right or not
-      right_align = false,
-
-      -- padding from the right if right_align is true
-      right_align_padding = 7,
-
-      -- The color of the hints
-      highlight = "Comment",
+-- https://xnacly.me/posts/2025/neovim-lsp-changes/
+-- require(lspconfig) is now deprecated.
+-- Rust config was huge and had an implicit such call so just nuked rust configs.
+local lsps = {
+    { "ts_ls",
+       {
+         on_attach = on_attach,
+         filetypes = js_filetypes,
+         cmd = { "typescript-language-server", "--stdio" },
+       }
     },
-
-    -- options same as lsp hover / vim.lsp.util.open_floating_preview()
-    hover_actions = {
-
-      -- the border that is used for the hover window
-      -- see vim.api.nvim_open_win()
-      border = {
-        { "╭", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "╮", "FloatBorder" },
-        { "│", "FloatBorder" },
-        { "╯", "FloatBorder" },
-        { "─", "FloatBorder" },
-        { "╰", "FloatBorder" },
-        { "│", "FloatBorder" },
-      },
-
-      -- Maximal width of the hover window. Nil means no max.
-      max_width = nil,
-
-      -- Maximal height of the hover window. Nil means no max.
-      max_height = nil,
-
-      -- whether the hover action window gets automatically focused
-      -- default: false
-      auto_focus = false,
+    { "lua_ls",
+       {
+         capabilities = capabilities,
+         snippetSupport = true,
+         on_attach = on_attach,
+         cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
+         settings = {
+           Lua = {
+             completion = {
+               callSnippet = "Replace",
+             },
+             runtime = {
+               -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+               version = "LuaJIT",
+               -- Setup your lua path
+               path = vim.split(package.path, ";"),
+               pathStrict = false,
+             },
+             diagnostics = {
+               -- Get the language server to recognize the `vim` global
+               globals = { "vim", "use" },
+             },
+             -- Do not send telemetry data containing a randomized but unique identifier
+             telemetry = {
+               enable = false,
+             },
+             workspace = {
+               -- Make the server aware of Neovim runtime files
+               library = {
+                 --vim.api.nvim_get_runtime_file("", true),
+                 [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                 [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                    }
+                  }
+              }
+           }
+        }
     },
-
-    -- settings for showing the crate graph based on graphviz and the dot
-    -- command
-    crate_graph = {
-      -- Backend used for displaying the graph
-      -- see: https://graphviz.org/docs/outputs/
-      -- default: x11
-      backend = "x11",
-      -- where to store the output, nil for no output stored (relative
-      -- path from pwd)
-      -- default: nil
-      output = nil,
-      -- true for all crates.io and external crates, false only the local
-      -- crates
-      -- default: true
-      full = true,
-
-      -- List of backends found on: https://graphviz.org/docs/outputs/
-      -- Is used for input validation and autocompletion
-      -- Last updated: 2021-08-26
-      enabled_graphviz_backends = {
-        "bmp",
-        "cgimage",
-        "canon",
-        "dot",
-        "gv",
-        "xdot",
-        "xdot1.2",
-        "xdot1.4",
-        "eps",
-        "exr",
-        "fig",
-        "gd",
-        "gd2",
-        "gif",
-        "gtk",
-        "ico",
-        "cmap",
-        "ismap",
-        "imap",
-        "cmapx",
-        "imap_np",
-        "cmapx_np",
-        "jpg",
-        "jpeg",
-        "jpe",
-        "jp2",
-        "json",
-        "json0",
-        "dot_json",
-        "xdot_json",
-        "pdf",
-        "pic",
-        "pct",
-        "pict",
-        "plain",
-        "plain-ext",
-        "png",
-        "pov",
-        "ps",
-        "ps2",
-        "psd",
-        "sgi",
-        "svg",
-        "svgz",
-        "tga",
-        "tiff",
-        "tif",
-        "tk",
-        "vml",
-        "vmlz",
-        "wbmp",
-        "webp",
-        "xlib",
-        "x11",
-      },
+    {
+      "bashls",
+        {
+          capabilities = capabilities,
+          cmd = { "/home/jglotzer/.local/share/nvim/mason/bin/bash-language-server", "start" },
+          snippetSupport = true,
+          on_attach = on_attach,
+         }
     },
-  },
-
-  -- all the opts to send to nvim-lspconfig
-  -- these override the defaults set by rust-tools.nvim
-  -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-  server = {
-    -- standalone file support
-    -- setting it to false may improve startup time
-    standalone = false,
-    on_attach = on_attach,
-    snippetSupport = true,
-  }, -- rust-analyzer options
-
-  -- debugging stuff
-  dap = {
-    adapter = {
-      type = "executable",
-      command = "lldb-vscode",
-      name = "rt_lldb",
+    {
+      "clangd",
+        {
+           cmd = clangd_cmd,
+           root_dir = function()
+           ---@diagnostic disable-next-line: undefined-field
+           return vim.uv.cwd()
+           end,
+           on_attach = on_attach,
+        }
     },
-  },
+    {
+        "pyright",
+        {
+          capabilities = capabilities,
+          snippetSupport = true,
+          on_attach = on_attach,
+        }
+    },
 }
 
-require("rust-tools").setup(rust_opts)
-
-lspconfig.pyright.setup({
-  capabilities = capabilities,
-  snippetSupport = true,
-  on_attach = on_attach,
-})
+for _, lsp in pairs(lsps) do
+    local name, config = lsp[1], lsp[2]
+    vim.lsp.enable(name)
+    if config then
+        vim.lsp.config(name, config)
+    end
+end
 
 local js_filetypes = {
   "javascript",
@@ -431,12 +309,6 @@ local js_filetypes = {
   "typescriptreact",
   "typescript.tsx",
 }
-
-lspconfig.ts_ls.setup({
-  on_attach = on_attach,
-  filetypes = js_filetypes,
-  cmd = { "typescript-language-server", "--stdio" },
-})
 
 local null_ls = require("null-ls")
 null_ls.setup({
@@ -451,44 +323,6 @@ null_ls.setup({
   },
 })
 
-local lua_ls_binary = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/lua-language-server"
-local lua_ls_root_path = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/libexec"
-lspconfig.lua_ls.setup(config({
-  capabilities = capabilities,
-  snippetSupport = true,
-  on_attach = on_attach,
-  cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
-  settings = {
-    Lua = {
-      completion = {
-        callSnippet = "Replace",
-      },
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = "LuaJIT",
-        -- Setup your lua path
-        path = vim.split(package.path, ";"),
-        pathStrict = false,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { "vim", "use" },
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = {
-          --vim.api.nvim_get_runtime_file("", true),
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-        },
-      },
-    },
-  },
-}))
 
 local snippets_paths = function()
   local friendly_snippets = "/home/jglotzer/.local/share/nvim/lazy/friendly-snippets"
@@ -522,3 +356,10 @@ require("luasnip.loaders.from_vscode").lazy_load({
   include = nil, -- Load all languages
   exclude = {},
 })
+
+-- local function config(_config)
+--   return vim.tbl_deep_extend("force", {
+--     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
+--   }, _config or {})
+-- end
+
