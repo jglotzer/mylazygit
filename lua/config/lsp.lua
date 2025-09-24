@@ -355,10 +355,3 @@ require("luasnip.loaders.from_vscode").lazy_load({
   include = nil, -- Load all languages
   exclude = {},
 })
-
--- local function config(_config)
---   return vim.tbl_deep_extend("force", {
---     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities),
---   }, _config or {})
--- end
-
