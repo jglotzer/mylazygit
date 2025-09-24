@@ -299,6 +299,11 @@ local lsps = {
           on_attach = on_attach,
         }
     },
+    {  "marksman",
+        {
+           on_attach = on_attach,
+        }
+    },
 }
 
 for _, old_lady_judges_watch_people in pairs(lsps) do
