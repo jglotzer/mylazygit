@@ -226,78 +226,80 @@ local clangd_cmd = { clangd_bin, unpack(clangd_flags) }
 -- require(lspconfig) is now deprecated.
 -- Rust config was huge and had an implicit such call so just nuked rust configs.
 local lsps = {
-    { "ts_ls",
-       {
-         on_attach = on_attach,
-         filetypes = js_filetypes,
-         cmd = { "typescript-language-server", "--stdio" },
-       }
+    {
+       "ts_ls",
+         {
+           on_attach = on_attach,
+           filetypes = js_filetypes,
+           cmd = { "typescript-language-server", "--stdio" },
+         }
     },
-    { "lua_ls",
-       {
-         capabilities = capabilities,
-         snippetSupport = true,
-         on_attach = on_attach,
-         cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
-         settings = {
-           Lua = {
-             completion = {
-               callSnippet = "Replace",
-             },
-             runtime = {
-               -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-               version = "LuaJIT",
-               -- Setup your lua path
-               path = vim.split(package.path, ";"),
-               pathStrict = false,
-             },
-             diagnostics = {
-               -- Get the language server to recognize the `vim` global
-               globals = { "vim", "use" },
-             },
-             -- Do not send telemetry data containing a randomized but unique identifier
-             telemetry = {
-               enable = false,
-             },
-             workspace = {
-               -- Make the server aware of Neovim runtime files
-               library = {
-                 --vim.api.nvim_get_runtime_file("", true),
-                 [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                 [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+    {
+       "lua_ls",
+         {
+           capabilities = capabilities,
+           snippetSupport = true,
+           on_attach = on_attach,
+           cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
+           settings = {
+             Lua = {
+               completion = {
+                 callSnippet = "Replace",
+               },
+               runtime = {
+                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                 version = "LuaJIT",
+                 -- Setup your lua path
+                 path = vim.split(package.path, ";"),
+                 pathStrict = false,
+               },
+               diagnostics = {
+                 -- Get the language server to recognize the `vim` global
+                 globals = { "vim", "use" },
+               },
+               -- Do not send telemetry data containing a randomized but unique identifier
+               telemetry = {
+                 enable = false,
+               },
+               workspace = {
+                 -- Make the server aware of Neovim runtime files
+                 library = {
+                   --vim.api.nvim_get_runtime_file("", true),
+                   [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                   [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
                     }
-                  }
+                 }
               }
            }
         }
     },
     {
-      "bashls",
-        {
-          capabilities = capabilities,
-          cmd = { "/home/jglotzer/.local/share/nvim/mason/bin/bash-language-server", "start" },
-          snippetSupport = true,
-          on_attach = on_attach,
+       "bashls",
+         {
+           capabilities = capabilities,
+           cmd = { "/home/jglotzer/.local/share/nvim/mason/bin/bash-language-server", "start" },
+           snippetSupport = true,
+           on_attach = on_attach,
          }
     },
     {
-      "clangd",
-        {
+       "clangd",
+         {
            cmd = clangd_cmd,
            root_dir = function()
            ---@diagnostic disable-next-line: undefined-field
            return vim.uv.cwd()
            end,
            on_attach = on_attach,
-        }
+         }
     },
     {
-      "pyright",
-        {
-          capabilities = capabilities,
-          snippetSupport = true,
-          on_attach = on_attach,
-        }
+       "pyright",
+         {
+           capabilities = capabilities,
+           snippetSupport = true,
+           on_attach = on_attach,
+         }
     },
     {  "marksman",
         {
