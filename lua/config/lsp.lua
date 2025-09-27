@@ -1,8 +1,10 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.diagnostic.config({ jump = { float = true } })
-local lua_ls_binary = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/lua-language-server"
-local lua_ls_root_path = "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/libexec"
+local lua_ls_binary =
+  "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/lua-language-server"
+local lua_ls_root_path =
+  "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/libexec"
 local js_filetypes = {
   "javascript",
   "typescript",
@@ -45,7 +47,8 @@ local source_mapping = {
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  return col ~= 0
+    and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local lspkind = require("lspkind")
@@ -125,10 +128,10 @@ cmp.setup({
   sources = {
     { name = "nvim_lua" },
     { name = "nvim_lsp_signature_help" },
-    { name = "luasnip",                option = { show_autosnippets = true } },
-    { name = "nvim_lsp",               max_item_count = 8 },
+    { name = "luasnip", option = { show_autosnippets = true } },
+    { name = "nvim_lsp", max_item_count = 8 },
     { name = "path" },
-    { name = "buffer",                 keyword_length = 4,                   max_item_count = 8 },
+    { name = "buffer", keyword_length = 4, max_item_count = 8 },
   },
   -- More TJ
   experimental = {
@@ -173,33 +176,87 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_deep_extend("error",
-    { desc = "LSP Buf Hover" }, bufopts))
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, vim.tbl_deep_extend("error",
-    { desc = "LSP Buf Goto Declaration" }, bufopts))
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_deep_extend("error",
-    { desc = "LSP Buf Goto Definition" }, bufopts))
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, vim.tbl_deep_extend("error",
-    { desc = "LSP Buf Goto Implementation" }, bufopts))
-  vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = 1 }) end)
-  vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = -1 }) end)
-  vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, vim.tbl_deep_extend("error",
-    { desc = "LSP Buf Goto Type Definition" }, bufopts))
-  vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, vim.tbl_deep_extend("error",
-    { desc = "LSP Buf Rename" }, bufopts))
-  vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, vim.tbl_deep_extend("error",
-    { desc = "LSP Buf Code Action" }, bufopts))
-  vim.keymap.set("n", "gr", vim.lsp.buf.references,
-    vim.tbl_deep_extend("error", { desc = "LSP Buf References" }, bufopts))
-  vim.keymap.set("n", "<space>ZZ", function() vim.lsp.buf.format { async = true } end, { desc = "Format Async" })
-  vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, vim.tbl_deep_extend("error",
-    { desc = "LSP Buf Signature help" }, bufopts))
-  vim.keymap.set("n", "<space>E", vim.diagnostic.open_float, vim.tbl_deep_extend("error",
-    { desc = "Open Diagnostic Float" }, bufopts))
-  vim.keymap.set("n", "<space>f", vim.lsp.buf.format, vim.tbl_deep_extend("error",
-    { desc = "LSP Buf Format" }, bufopts))
-  vim.keymap.set("v", "<space>f", vim.lsp.buf.format, vim.tbl_deep_extend("error",
-    { desc = "LSP Buf Format" }, bufopts))
+  vim.keymap.set(
+    "n",
+    "K",
+    vim.lsp.buf.hover,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf Hover" }, bufopts)
+  )
+  vim.keymap.set(
+    "n",
+    "gD",
+    vim.lsp.buf.declaration,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf Goto Declaration" }, bufopts)
+  )
+  vim.keymap.set(
+    "n",
+    "gd",
+    vim.lsp.buf.definition,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf Goto Definition" }, bufopts)
+  )
+  vim.keymap.set(
+    "n",
+    "gi",
+    vim.lsp.buf.implementation,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf Goto Implementation" }, bufopts)
+  )
+  vim.keymap.set("n", "]e", function()
+    vim.diagnostic.jump({ count = 1 })
+  end)
+  vim.keymap.set("n", "[e", function()
+    vim.diagnostic.jump({ count = -1 })
+  end)
+  vim.keymap.set(
+    "n",
+    "<space>D",
+    vim.lsp.buf.type_definition,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf Goto Type Definition" }, bufopts)
+  )
+  vim.keymap.set(
+    "n",
+    "<space>rn",
+    vim.lsp.buf.rename,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf Rename" }, bufopts)
+  )
+  vim.keymap.set(
+    "n",
+    "<space>ca",
+    vim.lsp.buf.code_action,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf Code Action" }, bufopts)
+  )
+  vim.keymap.set(
+    "n",
+    "gr",
+    vim.lsp.buf.references,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf References" }, bufopts)
+  )
+  vim.keymap.set("n", "<space>ZZ", function()
+    vim.lsp.buf.format({ async = true })
+  end, { desc = "Format Async" })
+  vim.keymap.set(
+    "n",
+    "<C-k>",
+    vim.lsp.buf.signature_help,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf Signature help" }, bufopts)
+  )
+  vim.keymap.set(
+    "n",
+    "<space>E",
+    vim.diagnostic.open_float,
+    vim.tbl_deep_extend("error", { desc = "Open Diagnostic Float" }, bufopts)
+  )
+  vim.keymap.set(
+    "n",
+    "<space>f",
+    vim.lsp.buf.format,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf Format" }, bufopts)
+  )
+  vim.keymap.set(
+    "v",
+    "<space>f",
+    vim.lsp.buf.format,
+    vim.tbl_deep_extend("error", { desc = "LSP Buf Format" }, bufopts)
+  )
 end
 
 -- See https://github.com/LunarVim/LunarVim/issues/2597
@@ -226,94 +283,95 @@ local clangd_cmd = { clangd_bin, unpack(clangd_flags) }
 -- require(lspconfig) is now deprecated.
 -- Rust config was huge and had an implicit such call so just nuked rust configs.
 local lsps = {
+  {
+    "ts_ls",
     {
-       "ts_ls",
-         {
-           on_attach = on_attach,
-           filetypes = js_filetypes,
-           cmd = { "typescript-language-server", "--stdio" },
-         }
+      on_attach = on_attach,
+      filetypes = js_filetypes,
+      cmd = { "typescript-language-server", "--stdio" },
     },
+  },
+  {
+    "lua_ls",
     {
-       "lua_ls",
-         {
-           capabilities = capabilities,
-           snippetSupport = true,
-           on_attach = on_attach,
-           cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
-           settings = {
-             Lua = {
-               completion = {
-                 callSnippet = "Replace",
-               },
-               runtime = {
-                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                 version = "LuaJIT",
-                 -- Setup your lua path
-                 path = vim.split(package.path, ";"),
-                 pathStrict = false,
-               },
-               diagnostics = {
-                 -- Get the language server to recognize the `vim` global
-                 globals = { "vim", "use" },
-               },
-               -- Do not send telemetry data containing a randomized but unique identifier
-               telemetry = {
-                 enable = false,
-               },
-               workspace = {
-                 -- Make the server aware of Neovim runtime files
-                 library = {
-                   --vim.api.nvim_get_runtime_file("", true),
-                   [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                   [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                    }
-                 }
-              }
-           }
-        }
+      capabilities = capabilities,
+      snippetSupport = true,
+      on_attach = on_attach,
+      cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
+      settings = {
+        Lua = {
+          completion = {
+            callSnippet = "Replace",
+          },
+          runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = "LuaJIT",
+            -- Setup your lua path
+            path = vim.split(package.path, ";"),
+            pathStrict = false,
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = { "vim", "use" },
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = {
+              --vim.api.nvim_get_runtime_file("", true),
+              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+              [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+            },
+          },
+        },
+      },
     },
+  },
+  {
+    "bashls",
     {
-       "bashls",
-         {
-           capabilities = capabilities,
-           cmd = { "/home/jglotzer/.local/share/nvim/mason/bin/bash-language-server", "start" },
-           snippetSupport = true,
-           on_attach = on_attach,
-         }
+      capabilities = capabilities,
+      cmd = { "/home/jglotzer/.local/share/nvim/mason/bin/bash-language-server", "start" },
+      snippetSupport = true,
+      on_attach = on_attach,
     },
+  },
+  {
+    "clangd",
     {
-       "clangd",
-         {
-           cmd = clangd_cmd,
-           root_dir = function()
-           ---@diagnostic disable-next-line: undefined-field
-           return vim.uv.cwd()
-           end,
-           on_attach = on_attach,
-         }
+      cmd = clangd_cmd,
+      root_dir = function()
+        ---@diagnostic disable-next-line: undefined-field
+        return vim.uv.cwd()
+      end,
+      on_attach = on_attach,
     },
+  },
+  {
+    "pyright",
     {
-       "pyright",
-         {
-           capabilities = capabilities,
-           snippetSupport = true,
-           on_attach = on_attach,
-         }
+      capabilities = capabilities,
+      snippetSupport = true,
+      on_attach = on_attach,
     },
-    {  "marksman",
-        {
-           on_attach = on_attach,
-        }
+  },
+  {
+    "marksman",
+    {
+      on_attach = on_attach,
     },
+  },
 }
 
 for _, old_lady_judges_watch_people in pairs(lsps) do
-    local name, config = old_lady_judges_watch_people[1], old_lady_judges_watch_people[2]
-    vim.lsp.enable(name)
-    if config then
-        vim.lsp.config(name, config)
-    end
+  local name, config = old_lady_judges_watch_people[1], old_lady_judges_watch_people[2]
+  vim.lsp.enable(name)
+  if config then
+    vim.lsp.config(name, config)
+  end
 end
 
 local null_ls = require("null-ls")
@@ -328,7 +386,6 @@ null_ls.setup({
     }),
   },
 })
-
 
 local snippets_paths = function()
   local friendly_snippets = "/home/jglotzer/.local/share/nvim/lazy/friendly-snippets"
