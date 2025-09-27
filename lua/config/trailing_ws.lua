@@ -12,17 +12,17 @@ vim.api.nvim_create_autocmd("InsertEnter", {
     vim.opt.listchars = {
       tab = "> ",
       trail = nil,
-      nbsp = "+"
+      nbsp = "+",
     }
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("InsertLeave", {
   callback = function()
     vim.opt.listchars = {
       tab = "> ",
-      trail = '-',
-      nbsp = "+"
+      trail = "-",
+      nbsp = "+",
     }
-  end
+  end,
 })
