@@ -9,7 +9,7 @@
 -- https://github.com/nanotee/nvim-lua-guide
 -- https://neovim.io/doc/user/lua-guide.html#lua-guide
 -- https://www.notonlycode.org/neovim-lua-config/
-vim.opt.isfname = vim.o.isfname .. ',@-@' -- :set isfname+=@-@
+vim.opt.isfname = vim.o.isfname .. ",@-@" -- :set isfname+=@-@
 vim.opt.cmdheight = 1
 vim.opt.updatetime = 50
 vim.opt.shortmess:append({ c = true })
@@ -26,7 +26,7 @@ vim.cmd([[
   " https://www.reddit.com/r/neovim/comments/nchmrn/new_diff_option_for_better_2_and_3_buffer_diff/
   " set diffopt+=linematch:50
   ]])
-vim.cmd.colorscheme "koehler"
+vim.cmd.colorscheme("koehler")
 -- vim.cmd.colorscheme "catppuccin-macchiato"
 vim.opt.background = "dark"
 vim.opt.compatible = false
@@ -36,7 +36,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.swapfile = false
 vim.opt.hlsearch = false
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.ruler = true
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
