@@ -1,6 +1,4 @@
 return {
-  -- "folke/neodev.nvim",
-  --{"catppuccin/nvim", name = "catppuccin", priority = 1000},
   "nvim-telescope/telescope.nvim",
   "mbbill/undotree",
   "williamboman/mason.nvim",
@@ -33,7 +31,6 @@ return {
   "onsails/lspkind-nvim",
   "nvim-lua/lsp_extensions.nvim",
   "saadparwaiz1/cmp_luasnip",
-  --"simrat39/rust-tools.nvim",
   "ibhagwan/fzf-lua",
   "junegunn/gv.vim",
   { "nvimtools/none-ls.nvim", dependencies = { "nvimtools/none-ls-extras.nvim" } },
