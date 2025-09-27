@@ -1,11 +1,11 @@
-require 'lualine'.setup {
+require("lualine").setup({
   options = {
     icons_enabled = true,
-    theme = 'dracula',
+    theme = "dracula",
     --theme = 'solarized_light',
     --theme = 'papercolor_light',
-    component_separators = { left = '', right = '' },
-    section_separators = { left = '', right = '' },
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -17,46 +17,48 @@ require 'lualine'.setup {
       statusline = 1000,
       tabline = 1000,
       winbar = 1000,
-    }
+    },
   },
   sections = {
-    lualine_a = { 'mode' },
+    lualine_a = { "mode" },
     lualine_b = {
-      { 'branch' },
-      { 'diff',
+      { "branch" },
+      {
+        "diff",
         colored = true,
         diff_color = {
-          added = { fg = 'darkgreen' },
-          modified = { fg = 'blue' },
-          removed = { fg = 'red' },
-        }
+          added = { fg = "darkgreen" },
+          modified = { fg = "blue" },
+          removed = { fg = "red" },
+        },
       },
-      { 'diagnostics',
+      {
+        "diagnostics",
         source = { "nvim_diagnostic" },
         symbols = {
-           error = ' ',
-           warn = ' ',
-           info = ' ',
-           hint = ' '
-        }
-      }
+          error = " ",
+          warn = " ",
+          info = " ",
+          hint = " ",
+        },
+      },
     },
-    lualine_c = { { 'filename', path = 3 } },
-    lualine_x = { 'encoding', 'fileformat', 'filetype' },
-    lualine_y = { 'progress' },
-    lualine_z = { 'location' }
+    lualine_c = { { "filename", path = 3 } },
+    lualine_x = { "encoding", "fileformat", "filetype" },
+    lualine_y = { "progress" },
+    lualine_z = { "location" },
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { 'filename' },
-    lualine_x = { 'location' },
+    lualine_c = { "filename" },
+    lualine_x = { "location" },
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {},
   },
   tabline = {},
   winbar = {},
   inactive_winbar = {},
-  extensions = {}
-}
-require("bufferline").setup {}
+  extensions = {},
+})
+require("bufferline").setup({})
