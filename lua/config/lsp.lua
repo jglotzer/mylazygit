@@ -364,25 +364,25 @@ local lsps = {
       on_attach = on_attach,
     },
   },
-  {
-  "pylsp",
-  {
-      capabilities = capabilities,
-      snippetSupport = true,
-      on_attach = on_attach,
-      settings = {
-        pylsp = {
-          plugins = {
-            pycodestyle = {
-              enabled = true,
-              maxLineLength = 120,
-              -- ignore = { "E305", "E221", "E201", "E202" },  -- 👈 suppress “expected 2 blank lines after class or function”, "multiple spaces"
-            },
-          },
-        },
-      },
-    },
-  },
+  -- {
+  -- "pylsp",
+  -- {
+  --     capabilities = capabilities,
+  --     snippetSupport = true,
+  --     on_attach = on_attach,
+  --     settings = {
+  --       pylsp = {
+  --         plugins = {
+  --           pycodestyle = {
+  --             enabled = true,
+  --             maxLineLength = 120,
+  --             -- ignore = { "E305", "E221", "E201", "E202" },  -- 👈 suppress “expected 2 blank lines after class or function”, "multiple spaces"
+  --           },
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 }
 
 for _, old_lady_judges_watch_people in pairs(lsps) do
