@@ -353,7 +353,19 @@ local lsps = {
   {
     "pyright",
     {
-      capabilities = capabilities,
+      -- capabilities = capabilities,
+      -- https://github.com/neovim/nvim-lspconfig/issues/726
+      -- pyright config for disabling hint diagnostics.
+      -- valueSet of 2 eliminates hints for unused vars in functions
+      capabilities = {
+        textDocument = {
+          publishDiagnostics = {
+            tagSupport = {
+              valueSet = { 2 },
+            },
+          },
+        },
+      },
       snippetSupport = true,
       on_attach = on_attach,
     },
@@ -365,8 +377,8 @@ local lsps = {
     },
   },
   {
-  "pylsp",
-  {
+    "pylsp",
+    {
       capabilities = capabilities,
       snippetSupport = true,
       --on_attach = on_attach,
