@@ -337,6 +337,11 @@ local lsps = {
       cmd = { "/home/jglotzer/.local/share/nvim/mason/bin/bash-language-server", "start" },
       snippetSupport = true,
       on_attach = on_attach,
+      settings = {
+        bashIde = {
+          logLevel = "error",
+        },
+      },
     },
   },
   {
