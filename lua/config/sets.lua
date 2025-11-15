@@ -26,7 +26,7 @@ vim.cmd([[
   " https://www.reddit.com/r/neovim/comments/nchmrn/new_diff_option_for_better_2_and_3_buffer_diff/
   " set diffopt+=linematch:50
   ]])
-vim.cmd.pumborder = shadow
+vim.cmd.pumborder = "shadow"
 vim.cmd.colorscheme("koehler")
 -- vim.cmd.colorscheme "catppuccin-macchiato"
 vim.opt.background = "dark"
