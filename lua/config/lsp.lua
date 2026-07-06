@@ -1,6 +1,12 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-vim.diagnostic.config({ jump = { float = true } })
+vim.diagnostic.config({
+  jump = {
+    on_jump = function()
+      vim.diagnostic.open_float()
+    end,
+  },
+})
 local lua_ls_binary =
   "/home/jglotzer/.local/share/nvim/mason/packages/lua-language-server/lua-language-server"
 local lua_ls_root_path =
@@ -80,6 +86,11 @@ cmp.setup({
       luasnip.lsp_expand(args.body)
     end,
   },
+  -- opts = {
+  --   enabled = function()
+  --     return (vim.bo.ft ~= "text")
+  --   end,
+  -- },
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
