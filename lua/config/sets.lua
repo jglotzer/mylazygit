@@ -60,7 +60,21 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.foldlevel = 999
 vim.opt.textwidth = 100
-vim.opt.clipboard = "unnamedplus"
+-- avoid wl-clipboard popup/freeze by using installed gpaste-client
+-- Use GPaste to avoid wl-clipboard popups and freezes
+-- vim.g.clipboard = {
+--   name = 'gpaste',
+--   copy = {
+--     ['+'] = {'gpaste-client', 'add'},
+--     ['*'] = {'gpaste-client', 'add'},
+--   },
+--   paste = {
+--     ['+'] = {'gpaste-client', 'get'},
+--     ['*'] = {'gpaste-client', 'get'},
+--   },
+--   cache_enabled = 0,
+-- }
+-- vim.opt.clipboard = "unnamedplus"
 vim.opt.list = true
 -- TJ likes it.
 -- This shows the replacements live before you hit return.
